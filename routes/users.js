@@ -12,11 +12,10 @@ const passportJWT = passport.authenticate("jwt",{session: false});
 
 
 router.post("/oauth/google", passport.authenticate('googleToken', { session: false }), UserController.signUp);
-router.get("/protected", passportJWT, UserController.protected)
 router.get("/", UserController.getAll);
 router.get("/show/:id", UserController.getUser);
-router.put("/update/:id",passportJWT, UserController.updateUser);
-router.delete("/delete/:id", passportJWT, UserController.deleteUser);
+router.put("/update",passportJWT, UserController.updateUser);
+router.delete("/delete", passportJWT, UserController.deleteUser);
 
 
 

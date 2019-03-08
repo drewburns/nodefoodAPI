@@ -19,7 +19,10 @@ const userSchema = new Schema({
     name: {
     	type: String
     }
-  }
+  },
+  recipes: [{type: mongoose.Schema.Types.ObjectId, ref: "recipe"}],
+  meals: [{type: mongoose.Schema.Types.ObjectId, ref: "meal"}],
+  created : { type : Date, default: Date.now }
 });
 
 const User = mongoose.model("user", userSchema);

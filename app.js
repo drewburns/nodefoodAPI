@@ -44,7 +44,7 @@ passport.use(new JwtStrategy({
 		// check to see if the user exists that is passed from this token
 		var userId = payload.sub;
 		const theUser = await User.findById(payload.sub)
-		if (!user) { 
+		if (!userId) { 
 			console.log("User doesn't exist");
 			return done(null, false)
 		}
@@ -100,8 +100,12 @@ app.use(express.static(__dirname + '/public'));
 var recipeRouter = require("./routes/recipes");
 // var userRouter = require("./routes/users")(passport);
 var userRouter = require("./routes/users");
+var ingredientRouter = require("./routes/ingredients");
+var mealRouter = require("./routes/meals");
 app.use('/recipes', recipeRouter);
 app.use('/users', userRouter);
+app.use('/meals', mealRouter);
+app.use('/ingredients', ingredientRouter);
 
 
 
